@@ -1,3 +1,11 @@
 setwd("~/Desktop/Programming/MITx 15.071x/Week2")
 Sys.setlocale("LC_ALL", "C")
 NBA = read.csv("NBA_train.csv")
+NBA$PTSdiff = NBA$PTS - NBA$oppPTS
+WinsReg = lm(W ~ PTSdiff, data = NBA)
+PointsReg = lm(PTS ~ X2PA + X3PA + FTA + AST + ORB + DRB + TOV + STL + BLK, data = NBA)
+PointsReg2 = lm(PTS ~ X2PA + X3PA + FTA + AST + ORB + DRB + STL + BLK, data = NBA)
+PointsReg3 = lm(PTS ~ X2PA + X3PA + FTA + AST + ORB + STL + BLK, data = NBA)
+PointsReg4 = lm(PTS ~ X2PA + X3PA + FTA + AST + ORB + STL, data = NBA)
+NBA_test = read.csv("NBA_test.csv")
+PointsPrediction = predict(PointsReg4, newdata = NBA_test)
