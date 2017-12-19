@@ -1,0 +1,7 @@
+setwd("~/Desktop/Programming/The Analytics Edge")
+Sys.setlocale("LC_ALL", "C")
+CPS = read.csv("CPSData.csv")
+MetroAreaMap = read.csv("MetroAreaCodes.csv")
+CountryMap = read.csv("CountryCodes.csv")
+CPS = merge(CPS, MetroAreaMap, by.x="MetroAreaCode", by.y="Code", all.x=TRUE)
+CPS = merge(CPS, CountryMap, by.x="CountryOfBirthCode", by.y="Code", all.x=TRUE)
